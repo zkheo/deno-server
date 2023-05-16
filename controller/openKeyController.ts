@@ -9,6 +9,7 @@ import sqlClient from "../config/mysqlConfig.ts"
 class OpenKeyController {
     //value 方式传参
     static async saveKey(ctx: any) {
+        ctx.response.headers.set("Access-Control-Allow-Origin", '*');
         if (!ctx.params.y) {
             return
         }
@@ -20,12 +21,13 @@ class OpenKeyController {
         );
         console.log(`keyInfo:${JSON.stringify(keyInfo.rows)}`);
         if (keyInfo.rows.length > 0) {
-            return ctx.response.body = "";
+            ctx.response.body = "";
+        } else {
+            await sqlClient.execute(
+                "INSERT INTO `open_key` (`key`) VALUES (?)" ,[key]
+            );
+            ctx.response.body = "ok";
         }
-        await sqlClient.execute(
-            "INSERT INTO `open_key` (`key`) VALUES (?)" ,[key]
-        );
-        ctx.response.body = "ok";
     }
 }
 
