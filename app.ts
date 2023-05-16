@@ -2,7 +2,7 @@ import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import {PORT, HOST} from "./config.ts";
 
 import UsersRoute from "./routers/users.ts";
-import PostsRoute from "./routers/posts.ts";
+import OpenKeyRoute from "./routers/openKey.ts";
 import notFound from "./routers/notFound.ts";
 
 const env = Deno.env.toObject();
@@ -14,9 +14,9 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 app.use(UsersRoute.routes());
-app.use(PostsRoute.routes());
 app.use(UsersRoute.allowedMethods());
-app.use(PostsRoute.allowedMethods());
+app.use(OpenKeyRoute.routes());
+app.use(OpenKeyRoute.allowedMethods());
 
 app.use(notFound);
 
