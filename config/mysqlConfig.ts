@@ -10,7 +10,7 @@
 //
 // export default client;
 
-import { connect } from "npm:@planetscale/database@^1.3";
+import { connect } from "npm:@planetscale/database@^1.2";
 const config = {
     host: 'aws.connect.psdb.cloud',
     username: 'yn46of4gql8pfene5occ',
