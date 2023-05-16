@@ -20,12 +20,12 @@ class OpenKeyController {
         );
         console.log(`keyInfo:${JSON.stringify(keyInfo.rows)}`);
         if (keyInfo.rows.length > 0) {
-            return ctx.response.body = Result.success(null);
+            return ctx.response.body = "";
         }
         await sqlClient.execute(
             "INSERT INTO `open_key` (`key`) VALUES (?)" ,[key]
         );
-        ctx.response.body = Result.success("ok");
+        ctx.response.body = "ok";
     }
 }
 
